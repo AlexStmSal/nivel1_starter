@@ -18,53 +18,56 @@ function log(mensaje) {
 
 // TODO 2: Botón "Mostrar hora" → usar new Date() y toLocaleTimeString()
 document.getElementById("btnHora").addEventListener("click", () => {
-  //Creo un obj fecha y de él saco las horas, min y seg. 
-  //Lo enlazo en un string y uso la funcion para mostrar la informacion en el DOM
-
+  //Creo un obj fecha y de él saco las horas, min y seg con toLocaleTime...
   let fecha = new Date();
-  let h = fecha.getHours();
-  let m = fecha.getMinutes();
-  let s = fecha.getSeconds();
-
-  let hora = `${h}:${m}:${s}`;
-  //CUIDADO: Los min y seg no tienen 0 antes del 1 al 9
-  log(hora);
+  //Mostrar con func log()
+  log(fecha.toLocaleTimeString());
 });
 
 // TODO 3: Botón "Número aleatorio" → usar Math.random() en rango 1..100 (entero)
 document.getElementById("btnAleatorio").addEventListener("click", () => {
-  // TODO
-
-  let num = Math.floor(Math.random() * (100 + 1)); //Num al entre 0 y 1
-
-
-
-
-
-
-
-
-
-
-
+  let num = Math.floor(Math.random() * 100) + 1;
+  log(num);
 });
 
 // TODO 4: Botón "Cambiar título" → pedir nuevo título con prompt y asignar a document.title
 document.getElementById("btnTitulo").addEventListener("click", () => {
-  // TODO
+  //Castear el nuevo titulo a un String
+  let nuevoTitulo = String(prompt("Introduce un nuevo título:"));
+  document.title = nuevoTitulo;
+  log("Nombre actualizado");
 });
 
 // TODO 5: Botón "Abrir ayuda" → window.open('about:blank','ayuda','width=400,height=300')
 document.getElementById("btnAbrir").addEventListener("click", () => {
   // TODO (recuerda que puede estar bloqueado; compruébalo)
+  let nuevaVentana = window.open(
+    "about:blank",
+    "Ayuda",
+    "width=400, height=300"
+  );
+  nuevaVentana.document.title = "Ayuda";
+  nuevaVentana.document.writeln("<h1>Nueva ventana de ayuda</h1>");
 });
 
 // TODO 6: Guardar y recuperar nombre en localStorage (clave 'nombre')
 const iNombre = document.getElementById("nombre");
 document.getElementById("btnGuardar").addEventListener("click", () => {
   // TODO: localStorage.setItem('nombre', iNombre.value)
+  localStorage.setItem(`nombre`, iNombre.value);
+
   // TODO: log de confirmación
+  log(`${iNombre.value} guardado en local storage`);
 });
+
 document.getElementById("btnRecuperar").addEventListener("click", () => {
   // TODO: leer localStorage.getItem('nombre') y mostrar con log
+  //Recuperar el valor del localstorage
+  const nombreGuardado = localStorage.getItem("nombre");
+
+  if (nombreGuardado) {
+    log(`Nombre recuperado: ${nombreGuardado}`);
+  } else {
+    log("No hay ningun nombre guardado en LocalStorage");
+  }
 });
