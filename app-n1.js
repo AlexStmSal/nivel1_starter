@@ -41,6 +41,8 @@ document.getElementById("btnTitulo").addEventListener("click", () => {
 // TODO 5: Botón "Abrir ayuda" → window.open('about:blank','ayuda','width=400,height=300')
 document.getElementById("btnAbrir").addEventListener("click", () => {
   // TODO (recuerda que puede estar bloqueado; compruébalo)
+  //Los nav modernos bloquean los window.open si no hay una acción directa del usuario.
+  //En este caso como pulsa click si la hay
   let nuevaVentana = window.open(
     "about:blank",
     "Ayuda",
